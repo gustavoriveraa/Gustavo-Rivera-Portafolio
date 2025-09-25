@@ -160,7 +160,6 @@ body {
   margin: 0;
 }
 
-/* Botón Mondrian */
 .action-btn {
   padding: 12px 20px;
   font-size: 16px;
@@ -192,7 +191,7 @@ body {
 .iframe-container {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* Relación 16:9 */
+  padding-bottom: 56.25%; 
   height: 0;
   overflow: hidden;
   border-radius: 8px;
