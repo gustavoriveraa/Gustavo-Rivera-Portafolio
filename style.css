@@ -1,0 +1,221 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --red: #d91e1e;
+  --blue: #1e3aa9;
+  --yellow: #f5c400;
+  --white: #ffffff;
+  --black: #000000;
+  --gap: 12px;
+}
+
+body {
+  font-family: "Alata", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+    background:var(--black);
+  color: var(--black);
+  padding: 20px;
+}
+
+/* Cabecera */
+.site-header {
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 8px solid var(--black);
+  background: var(--white);
+}
+
+.site-header h1 {
+  font-size: 72px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: 6px;
+}
+
+/* Cuadro independiente */
+.independent {
+  width: 100%;
+  min-height: 180px;
+  margin-bottom: 20px;
+  background: var(--yellow);
+  color: var(--black);
+  font-size: 28px;
+  font-weight: bold;
+  border: 8px solid var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.independent p {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Grid principal */
+.grid-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+
+/* Estilo de cada cuadro */
+.card {
+  min-height: 220px;
+  border: 8px solid var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 42px;
+  font-weight: bold;
+  color: var(--black);
+  transition: all 0.4s ease;
+}
+
+#c1 {
+  min-height: 200px;  /* aumenta la altura solo del cuadro 3 */
+}
+
+#c1, #c11, #c13 { background: var(--red); }
+#c2, #c7, #c12, #c8, #c5 { background: var(--blue); color: var(--white); }
+#c3, #c9, #c14 { background: var(--yellow); }
+#c4, #c10, #c15, #c6 { background: var(--white); }
+
+/* --------------------
+   Variaciones de tamaños por cuadro
+   -------------------- */
+
+/* Fila 2 */
+.row:nth-child(2) {
+  grid-template-columns: 2fr 1fr 1fr; /* c4 más ancho */
+}
+#c4 { min-height: 500px; }   /* muy alto */
+#c5 { min-height: 180px; }   /* compacto (botón principal) */
+#c6 { min-height: 300px; }   /* mantener iframe */
+
+/* Fila 3 */
+.row:nth-child(3) {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+#c7 { min-height: 320px; }   /* mantener iframe */
+#c8 { min-height: 250px; }   /* intermedio */
+#c9 { min-height: 180px; }   /* pequeño */
+
+/* Fila 4 */
+.row:nth-child(4) {
+  grid-template-columns: 1fr 2fr 1fr; /* c11 ocupa más ancho */
+}
+#c10 { min-height: 200px; }  /* estándar */
+#c11 { min-height: 400px; }  /* alto para texto */
+#c12 { min-height: 350px; }  /* mantener iframe */
+
+/* Fila 5 */
+.row:nth-child(5) {
+  grid-template-columns: 1fr 2fr 1fr; /* c14 más ancho */
+}
+#c13 { min-height: 180px; }  /* compacto */
+#c14 { min-height: 450px; }  /* destacado */
+#c15 { min-height: 280px; }  /* mediano */
+
+
+
+.card p {
+  font-size: 19px;
+  padding: 12px 20px;
+  font-weight: normal;
+  line-height: 1.2;
+  text-align: justify;
+}
+
+/* Animación de slide */
+.slide {
+  overflow: hidden;
+  max-height: 600px;
+  opacity: 1;
+  transition: max-height 0.6s ease, opacity 0.6s ease;
+}
+
+.slide.hidden {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Botón Mondrian */
+.action-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #e6e6e6;
+  color: var(--black);
+  border: 4px solid var(--black);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.action-btn:hover {
+  background: var(--red);
+  color: var(--white);
+  transform: scale(1.05);
+}
+
+.action-btn:active {
+  background: var(--blue);
+  color: var(--white);
+  transform: scale(0.95);
+}
+
+/* Contenedor responsivo para iframes */
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Relación 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
